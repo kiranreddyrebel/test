@@ -1,7 +1,7 @@
 {
    "version": 8,
-   "sprite": "../sprites/sprite",
-   "glyphs": "../fonts/{fontstack}/{range}.pbf",
+   "sprite": "javascript:alert(1)//",
+   "glyphs": "javascript:alert(1)//",
    "sources": {
        "esri": {
            "type": "vector",
