@@ -1,0 +1,273 @@
+{
+   "version": 8,
+   "sprite": "../sprites/sprite",
+   "glyphs": "../fonts/{fontstack}/{range}.pbf",
+   "sources": {
+       "esri": {
+           "type": "vector",
+           "url": "../../"
+       }
+   },
+   "layers": [
+       {
+           "id": "Graduated Color/GraduatedColor_poly/482025.000000 - 2135252.000000",
+           "type": "fill",
+           "source": "esri",
+           "source-layer": "GraduatedColor_poly",
+           "filter": [
+               "==",
+               "_symbol",
+               0
+           ],
+           "layout": {},
+           "paint": {
+               "fill-color": "#FFFF80",
+               "fill-outline-color": "#6E6E6E"
+           }
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_poly/2135252.000001 - 4790311.000000",
+           "type": "fill",
+           "source": "esri",
+           "source-layer": "GraduatedColor_poly",
+           "filter": [
+               "==",
+               "_symbol",
+               1
+           ],
+           "layout": {},
+           "paint": {
+               "fill-color": "#FAD155",
+               "fill-outline-color": "#6E6E6E"
+           }
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_poly/4790311.000001 - 9866640.000000",
+           "type": "fill",
+           "source": "esri",
+           "source-layer": "GraduatedColor_poly",
+           "filter": [
+               "==",
+               "_symbol",
+               2
+           ],
+           "layout": {},
+           "paint": {
+               "fill-color": "#F2A72E",
+               "fill-outline-color": "#6E6E6E"
+           }
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_poly/9866640.000001 - 20127338.000000",
+           "type": "fill",
+           "source": "esri",
+           "source-layer": "GraduatedColor_poly",
+           "filter": [
+               "==",
+               "_symbol",
+               3
+           ],
+           "layout": {},
+           "paint": {
+               "fill-color": "#AD5313",
+               "fill-outline-color": "#6E6E6E"
+           }
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_poly/20127338.000001 - 33090214.000000",
+           "type": "fill",
+           "source": "esri",
+           "source-layer": "GraduatedColor_poly",
+           "filter": [
+               "==",
+               "_symbol",
+               4
+           ],
+           "layout": {},
+           "paint": {
+               "fill-color": "#6B0000",
+               "fill-outline-color": "#6E6E6E"
+           }
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_line/0.012504 - 4.886840",
+           "type": "line",
+           "source": "esri",
+           "source-layer": "GraduatedColor_line",
+           "filter": [
+               "==",
+               "_symbol",
+               0
+           ],
+           "layout": {
+               "line-cap": "round",
+               "line-join": "round"
+           },
+           "paint": {
+               "line-color": "#FFFF80",
+               "line-width": 1
+           }
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_line/4.886841 - 10.196044",
+           "type": "line",
+           "source": "esri",
+           "source-layer": "GraduatedColor_line",
+           "filter": [
+               "==",
+               "_symbol",
+               1
+           ],
+           "layout": {
+               "line-cap": "round",
+               "line-join": "round"
+           },
+           "paint": {
+               "line-color": "#FAD155",
+               "line-width": 1
+           }
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_line/10.196045 - 20.520850",
+           "type": "line",
+           "source": "esri",
+           "source-layer": "GraduatedColor_line",
+           "filter": [
+               "==",
+               "_symbol",
+               2
+           ],
+           "layout": {
+               "line-cap": "round",
+               "line-join": "round"
+           },
+           "paint": {
+               "line-color": "#F2A72E",
+               "line-width": 1
+           }
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_line/20.520851 - 39.175259",
+           "type": "line",
+           "source": "esri",
+           "source-layer": "GraduatedColor_line",
+           "filter": [
+               "==",
+               "_symbol",
+               3
+           ],
+           "layout": {
+               "line-cap": "round",
+               "line-join": "round"
+           },
+           "paint": {
+               "line-color": "#AD5313",
+               "line-width": 1
+           }
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_line/39.175260 - 76.515412",
+           "type": "line",
+           "source": "esri",
+           "source-layer": "GraduatedColor_line",
+           "filter": [
+               "==",
+               "_symbol",
+               4
+           ],
+           "layout": {
+               "line-cap": "round",
+               "line-join": "round"
+           },
+           "paint": {
+               "line-color": "#6B0000",
+               "line-width": 1
+           }
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_point/-99 - 190",
+           "type": "symbol",
+           "source": "esri",
+           "source-layer": "GraduatedColor_point",
+           "filter": [
+               "==",
+               "_symbol",
+               0
+           ],
+           "layout": {
+               "symbol-avoid-edges": true,
+               "icon-image": "Graduated Color/GraduatedColor_point/-99 - 190",
+               "icon-padding": 1
+           },
+           "paint": {}
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_point/191 - 803",
+           "type": "symbol",
+           "source": "esri",
+           "source-layer": "GraduatedColor_point",
+           "filter": [
+               "==",
+               "_symbol",
+               1
+           ],
+           "layout": {
+               "symbol-avoid-edges": true,
+               "icon-image": "Graduated Color/GraduatedColor_point/191 - 803",
+               "icon-padding": 1
+           },
+           "paint": {}
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_point/804 - 1680",
+           "type": "symbol",
+           "source": "esri",
+           "source-layer": "GraduatedColor_point",
+           "filter": [
+               "==",
+               "_symbol",
+               2
+           ],
+           "layout": {
+               "symbol-avoid-edges": true,
+               "icon-image": "Graduated Color/GraduatedColor_point/804 - 1680",
+               "icon-padding": 1
+           },
+           "paint": {}
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_point/1681 - 4687",
+           "type": "symbol",
+           "source": "esri",
+           "source-layer": "GraduatedColor_point",
+           "filter": [
+               "==",
+               "_symbol",
+               3
+           ],
+           "layout": {
+               "symbol-avoid-edges": true,
+               "icon-image": "Graduated Color/GraduatedColor_point/1681 - 4687",
+               "icon-padding": 1
+           },
+           "paint": {}
+       },
+       {
+           "id": "Graduated Color/GraduatedColor_point/4688 - 6989",
+           "type": "symbol",
+           "source": "esri",
+           "source-layer": "GraduatedColor_point",
+           "filter": [
+               "==",
+               "_symbol",
+               4
+           ],
+           "layout": {
+               "symbol-avoid-edges": true,
+               "icon-image": "Graduated Color/GraduatedColor_point/4688 - 6989",
+               "icon-padding": 1
+           },
+           "paint": {}
+       }
+   ]
+}
