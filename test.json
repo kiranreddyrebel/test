@@ -5,7 +5,7 @@
    "sources": {
        "esri": {
            "type": "vector",
-           "url": "javascript:alert(1);//\"
+           "url": "javascript:alert(1)//"
        }
    },
    "layers": [
