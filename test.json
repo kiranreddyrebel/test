@@ -5,7 +5,7 @@
    "sources": {
        "esri": {
            "type": "vector",
-           "url": "../../"
+           "url": "javascript:alert(0)"
        }
    },
    "layers": [
@@ -29,6 +29,7 @@
            "id": "Graduated Color/GraduatedColor_poly/2135252.000001 - 4790311.000000",
            "type": "fill",
            "source": "esri",
+          "innerHTML":"<h1>ffffff</h1>",
            "source-layer": "GraduatedColor_poly",
            "filter": [
                "==",
