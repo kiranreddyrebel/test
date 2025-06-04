@@ -1,0 +1,72 @@
+[
+  {
+    "source": "page_or_iframe",
+    "type": "log",
+    "text": "Loaded xless.",
+    "location": {
+      "url": "https://donreddy.vercel.app/",
+      "lineNumber": 3,
+      "columnNumber": 8
+    }
+  },
+  {
+    "source": "page_or_iframe",
+    "type": "debug",
+    "text": "1973c130330 0ms Starting document clone",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "page_or_iframe",
+    "type": "debug",
+    "text": "1973c130330 85ms Document cloned, using computed rendering",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "page_or_iframe",
+    "type": "debug",
+    "text": "1973c130330 85ms Starting DOM parsing",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "page_or_iframe",
+    "type": "debug",
+    "text": "1973c130330 104ms Starting renderer",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "page_or_iframe",
+    "type": "debug",
+    "text": "1973c130330 117ms Canvas renderer initialized (300x150 at 0,0) with scale 1",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "page_or_iframe",
+    "type": "debug",
+    "text": "1973c130330 122ms Finished rendering",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  }
+]
