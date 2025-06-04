@@ -1,0 +1,92 @@
+[
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "log",
+    "text": "Loaded xless.",
+    "location": {
+      "url": "https://donreddy.vercel.app/",
+      "lineNumber": 3,
+      "columnNumber": 8
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4d1d3b 0ms Starting document clone",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "error",
+    "text": "Refused to display 'https://ssrf.localdomain.pw/' in a frame because it set 'X-Frame-Options' to 'sameorigin'.",
+    "location": {
+      "url": "chrome-error://chromewebdata/",
+      "lineNumber": 0,
+      "columnNumber": 0
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "error",
+    "text": "Refused to display 'https://ssrf.localdomain.pw/' in a frame because it set 'X-Frame-Options' to 'sameorigin'.",
+    "location": {
+      "url": "chrome-error://chromewebdata/",
+      "lineNumber": 0,
+      "columnNumber": 0
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4d1d3b 563ms Document cloned, using computed rendering",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4d1d3b 564ms Starting DOM parsing",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4d1d3b 592ms Starting renderer",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4d1d3b 606ms Canvas renderer initialized (300x174 at 0,0) with scale 1",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4d1d3b 612ms Finished rendering",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  }
+]

