@@ -1,0 +1,78 @@
+[
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "log",
+    "text": "Loaded xless.",
+    "location": {
+      "url": "https://donreddy.vercel.app/",
+      "lineNumber": 3,
+      "columnNumber": 8
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4f5444 0ms Starting document clone",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4f5444 174ms Document cloned, using computed rendering",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4f5444 175ms Starting DOM parsing",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4f5444 223ms Starting renderer",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4f5444 240ms Canvas renderer initialized (300x490 at 0,0) with scale 1",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "main_page_or_outer_iframe",
+    "type": "debug",
+    "text": "1973c4f5444 249ms Finished rendering",
+    "location": {
+      "url": "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js",
+      "lineNumber": 19,
+      "columnNumber": 84113
+    }
+  },
+  {
+    "source": "script_info",
+    "type": "error",
+    "text": "Failed to get content for Inner iframe 7 (src: about:blank): Frame.content: Unable to retrieve content because the page is navigating and changing the content.",
+    "location": {}
+  }
+]

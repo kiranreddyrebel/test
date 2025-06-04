@@ -39,14 +39,14 @@ async def main():
         page.on("response", handle_response)
 
         # TARGET HTML FILE CHANGED HERE
-        file_path = "file://" + os.path.join(os.getcwd(), "render_gcp_ssrf_test_iframe.html")
+        file_path = "file://" + os.path.join(os.getcwd(), "render_mixed_test_iframe.html")
 
         await page.goto(file_path, wait_until="networkidle")
 
         main_html_content = await page.content()
 
         outer_iframe_html = "Outer iframe not found or content not accessible."
-        inner_iframe_html = "Inner iframe (GCP SSRF test) not found or content not accessible." # Only one inner iframe in this test
+        inner_iframes_html_list = []
 
         if len(page.frames) > 1:
             outer_iframe = page.frames[1]
@@ -56,79 +56,93 @@ async def main():
                 outer_iframe_html = f"Could not access outer iframe content: {str(e)}"
                 console_messages.append({"source": "script_info", "type": "error", "text": f"Failed to get outer_iframe content: {e}", "location": {}})
 
-            if len(outer_iframe.child_frames) > 0: # Should be exactly one child frame
-                inner_iframe_obj = outer_iframe.child_frames[0]
-                iframe_name = f"Inner iframe (src: {inner_iframe_obj.url})"
+            for i, inner_frame in enumerate(outer_iframe.child_frames): # Should be 6 inner frames
+                iframe_name = f"Inner iframe {i+1} (src: {inner_frame.url})" # Use actual inner_frame.url for clarity
                 try:
-                    inner_iframe_html = await inner_iframe_obj.content()
+                    content = await inner_frame.content()
+                    inner_iframes_html_list.append({"name": iframe_name, "content": content})
                 except Exception as e:
-                    inner_iframe_html = f"Could not access content for {iframe_name}: {str(e)}"
+                    content = f"Could not access content: {str(e)}"
+                    inner_iframes_html_list.append({"name": iframe_name, "content": content})
                     console_messages.append({"source": "script_info", "type": "error", "text": f"Failed to get content for {iframe_name}: {e}", "location": {}})
-            else:
-                 inner_iframe_html = "No inner iframe found inside outer iframe."
         else:
             outer_iframe_html = "Outer iframe not found."
 
         await browser.close()
 
         # FILENAMES CHANGED HERE
-        with open("gcp_ssrf_alerts.txt", "w") as f:
+        with open("mixed_test_alerts.txt", "w") as f:
             if alerts: f.writelines([a + "\n" for a in alerts])
             else: f.write("No alerts captured.\n")
 
-        with open("gcp_ssrf_console.json", "w") as f:
+        with open("mixed_test_console.json", "w") as f:
             json.dump(console_messages, f, indent=2)
 
-        with open("gcp_ssrf_dom.html", "w") as f:
+        with open("mixed_test_dom.html", "w") as f:
             f.write("--- MAIN PAGE HTML ---\n")
             f.write(main_html_content)
             f.write("\n\n--- OUTER IFRAME (SRCDOC) DOCUMENT HTML ---\n")
             f.write(outer_iframe_html)
-            f.write(f"\n\n--- INNER IFRAME (GCP SSRF Test) DOCUMENT HTML ---\n") # Adjusted for single inner iframe
-            f.write(inner_iframe_html)
+            for iframe_data in inner_iframes_html_list:
+                f.write(f"\n\n--- {iframe_data['name']} DOCUMENT HTML ---\n")
+                f.write(iframe_data['content'])
 
-
-        with open("gcp_ssrf_network.json", "w") as f:
+        with open("mixed_test_network.json", "w") as f:
             json.dump(network_requests_raw, f, indent=2)
 
         # Summary printouts
-        print("--- ALERTS (saved to gcp_ssrf_alerts.txt) ---")
+        print("--- ALERTS (saved to mixed_test_alerts.txt) ---")
         if not alerts: print("No alerts captured.")
         else:
             for alert in alerts: print(alert)
 
-        print(f"\n--- CONSOLE MESSAGES (saved to gcp_ssrf_console.json) ---")
+        print(f"\n--- CONSOLE MESSAGES (saved to mixed_test_console.json) ---")
         print(f"{len(console_messages)} console messages saved.")
 
-        print(f"\n--- HTML CONTENT (saved to gcp_ssrf_dom.html) ---")
-        print(f"HTML content (main, outer iframe, 1 inner iframe) saved.") # Adjusted for single inner iframe
+        print(f"\n--- HTML CONTENT (saved to mixed_test_dom.html) ---")
+        print(f"HTML content (main, outer iframe, {len(inner_iframes_html_list)} inner iframes) saved.")
 
-        print(f"\n--- NETWORK ACTIVITY SUMMARY (details in gcp_ssrf_network.json) ---")
+        print(f"\n--- NETWORK ACTIVITY SUMMARY (details in mixed_test_network.json) ---")
 
-        ssrf_custom_domain_requests = [req for req in network_requests_raw if "ssrf.localdomain.pw/custom-200/" in req["url"]]
-        gcp_metadata_requests = [req for req in network_requests_raw if "metadata.google.internal" in req["url"]]
+        targets_of_interest = {
+            "instance-data": "http://instance-data/latest/meta-data/",
+            "localhost:443": "http://127.0.0.1:443/",
+            "localhost:80": "http://127.0.0.1:80/",
+            "gcp-token": "http://metadata.google.internal/computeMetadata/v1beta1/instance/service-accounts/default/token",
+            "file-root": "file:///",
+            "file-var-www": "file:///var/www/html/"
+        }
 
-        print(f"Requests to ssrf.localdomain.pw/custom-200/: {len([r for r in ssrf_custom_domain_requests if r['event_type']=='request'])}")
-        for req in ssrf_custom_domain_requests:
-            if req['event_type'] == 'response':
-                print(f"- Response from {req['url']}: Status {req['status']}")
-            elif req['event_type'] == 'requestfailed':
-                print(f"- Failed request to {req['url']}: {req['failure_text']}")
+        for name, url_substring in targets_of_interest.items():
+            if "file://" in url_substring:
+                # File access attempts are usually found in console, not as direct failed network requests
+                console_errors_for_file = [msg for msg in console_messages if url_substring in msg.get("text","") or (msg.get("location",{}).get("url") == url_substring and msg.get("type") == "error")]
+                # A more robust check would be to see if an iframe with this src failed to load its document.
+                # This can be inferred if its content in mixed_test_dom.html is the error string.
+                if any(url_substring in data['name'] and "Could not access content" in data['content'] for data in inner_iframes_html_list):
+                     print(f"Attempt to load {name} ({url_substring}): Likely blocked (check DOM and console files for details).")
+                elif console_errors_for_file:
+                     print(f"Attempt to load {name} ({url_substring}): Found related console errors (check console file).")
+                else:
+                     print(f"Attempt to load {name} ({url_substring}): No specific failed network request or known console error pattern detected in summary.")
 
-        print(f"Requests to metadata.google.internal (potentially via SSRF custom test): {len([r for r in gcp_metadata_requests if r['event_type']=='request'])}")
-        successful_metadata_responses = [req for req in gcp_metadata_requests if req['event_type'] == 'response' and req['status'] == 200]
-        failed_metadata_requests = [req for req in gcp_metadata_requests if req['event_type'] == 'requestfailed']
+            else: # HTTP targets
+                http_requests = [req for req in network_requests_raw if url_substring in req.get("url","")]
+                successful_responses = [r for r in http_requests if r['event_type'] == 'response' and r.get('status') == 200]
+                failed_requests = [r for r in http_requests if r['event_type'] == 'requestfailed']
 
-        if successful_metadata_responses:
-            print(f"Found {len(successful_metadata_responses)} successful responses from metadata.google.internal:")
-            for req in successful_metadata_responses:
-                 print(f"- URL: {req['url']}, Status: {req.get('status', 'N/A')}, Frame URL: {req['frame_url']}")
-        elif failed_metadata_requests:
-            print(f"Found {len(failed_metadata_requests)} failed requests for metadata.google.internal:")
-            for req in failed_metadata_requests:
-                 print(f"- URL: {req['url']}, Failed: {req['failure_text']}, Frame URL: {req['frame_url']}")
-        else:
-            print("No conclusive network log entries (success or fail) for metadata.google.internal.")
+                print(f"Target: {name} ({url_substring})")
+                if successful_responses:
+                    print(f"  Successful responses: {len(successful_responses)}")
+                    for r in successful_responses: print(f"    - URL: {r['url']}, Status: {r['status']}")
+                elif failed_requests:
+                    print(f"  Failed requests: {len(failed_requests)}")
+                    for r in failed_requests: print(f"    - URL: {r['url']}, Failure: {r['failure_text']}")
+                else:
+                    print(f"  No conclusive successful or failed network log entries for this target.")
+                    other_related_events = [r for r in http_requests if r not in successful_responses and r not in failed_requests]
+                    if other_related_events:
+                        print(f"  Other related network events: {len(other_related_events)} (e.g. initial requests not yet failed/succeeded, other statuses)")
 
 
 if __name__ == "__main__":

