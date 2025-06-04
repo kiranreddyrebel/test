@@ -39,15 +39,14 @@ async def main():
         page.on("response", handle_response)
 
         # TARGET HTML FILE CHANGED HERE
-        file_path = "file://" + os.path.join(os.getcwd(), "render_combined_test_iframe.html")
+        file_path = "file://" + os.path.join(os.getcwd(), "render_extensive_test_iframe.html")
 
         await page.goto(file_path, wait_until="networkidle")
 
         main_html_content = await page.content()
 
         outer_iframe_html = "Outer iframe not found or content not accessible."
-        inner_iframe1_html = "Inner iframe 1 (file) not found or content not accessible."
-        inner_iframe2_html = "Inner iframe 2 (SSRF) not found or content not accessible."
+        inner_iframes_html_list = []
 
         if len(page.frames) > 1:
             outer_iframe = page.frames[1]
@@ -57,93 +56,82 @@ async def main():
                 outer_iframe_html = f"Could not access outer iframe content: {str(e)}"
                 console_messages.append({"source": "script_info", "type": "error", "text": f"Failed to get outer_iframe content: {e}", "location": {}})
 
-            if len(outer_iframe.child_frames) > 0:
-                inner_iframe1 = outer_iframe.child_frames[0] # file:///home/jules
+            for i, inner_frame in enumerate(outer_iframe.child_frames):
+                iframe_name = f"Inner iframe {i+1} (src: {inner_frame.url})"
                 try:
-                    inner_iframe1_html = await inner_iframe1.content()
+                    content = await inner_frame.content()
+                    inner_iframes_html_list.append({"name": iframe_name, "content": content})
                 except Exception as e:
-                    inner_iframe1_html = f"Could not access inner iframe 1 (file) content: {str(e)}"
-                    console_messages.append({"source": "script_info", "type": "error", "text": f"Failed to get inner_iframe1 content: {e}", "location": {}})
-
-            if len(outer_iframe.child_frames) > 1:
-                inner_iframe2 = outer_iframe.child_frames[1] # ssrf.localdomain.pw
-                try:
-                    inner_iframe2_html = await inner_iframe2.content()
-                except Exception as e:
-                    inner_iframe2_html = f"Could not access inner iframe 2 (SSRF) content: {str(e)}"
-                    console_messages.append({"source": "script_info", "type": "error", "text": f"Failed to get inner_iframe2 content: {e}", "location": {}})
+                    content = f"Could not access content: {str(e)}"
+                    inner_iframes_html_list.append({"name": iframe_name, "content": content})
+                    console_messages.append({"source": "script_info", "type": "error", "text": f"Failed to get content for {iframe_name}: {e}", "location": {}})
         else:
             outer_iframe_html = "Outer iframe not found."
 
         await browser.close()
 
         # FILENAMES CHANGED HERE
-        with open("combo_test_alerts.txt", "w") as f:
+        with open("ext_test_alerts.txt", "w") as f:
             if alerts: f.writelines([a + "\n" for a in alerts])
             else: f.write("No alerts captured.\n")
 
-        with open("combo_test_console.json", "w") as f:
+        with open("ext_test_console.json", "w") as f:
             json.dump(console_messages, f, indent=2)
 
-        with open("combo_test_dom.html", "w") as f:
+        with open("ext_test_dom.html", "w") as f:
             f.write("--- MAIN PAGE HTML ---\n")
             f.write(main_html_content)
             f.write("\n\n--- OUTER IFRAME (SRCDOC) DOCUMENT HTML ---\n")
             f.write(outer_iframe_html)
-            f.write("\n\n--- INNER IFRAME 1 (file:///home/jules) DOCUMENT HTML ---\n")
-            f.write(inner_iframe1_html)
-            f.write("\n\n--- INNER IFRAME 2 (SSRF Test) DOCUMENT HTML ---\n")
-            f.write(inner_iframe2_html)
+            for iframe_data in inner_iframes_html_list:
+                f.write(f"\n\n--- {iframe_data['name']} DOCUMENT HTML ---\n")
+                f.write(iframe_data['content'])
 
-        with open("combo_test_network.json", "w") as f:
+
+        with open("ext_test_network.json", "w") as f:
             json.dump(network_requests_raw, f, indent=2)
 
         # Summary printouts
-        file_home_requests_summary = [req for req in network_requests_raw if req['event_type'] == 'requestfailed' and "file:///home/jules" in req["url"]]
-        ssrf_domain_requests = [req for req in network_requests_raw if "ssrf.localdomain.pw" in req["url"]]
-        metadata_redirect_requests = [req for req in network_requests_raw if "169.254.169.254" in req["url"]]
-
-        print("--- ALERTS (saved to combo_test_alerts.txt) ---")
+        print("--- ALERTS (saved to ext_test_alerts.txt) ---")
         if not alerts: print("No alerts captured.")
         else:
             for alert in alerts: print(alert)
 
-        print(f"\n--- CONSOLE MESSAGES (saved to combo_test_console.json) ---")
+        print(f"\n--- CONSOLE MESSAGES (saved to ext_test_console.json) ---")
         print(f"{len(console_messages)} console messages saved.")
 
-        print(f"\n--- HTML CONTENT (saved to combo_test_dom.html) ---")
-        print("HTML content (main, outer iframe, two inner iframes) saved.")
+        print(f"\n--- HTML CONTENT (saved to ext_test_dom.html) ---")
+        print(f"HTML content (main, outer iframe, {len(inner_iframes_html_list)} inner iframes) saved.")
 
-        print(f"\n--- FILE:///home/jules ATTEMPTS (from network log) ---")
-        if file_home_requests_summary:
-            print(f"Found {len(file_home_requests_summary)} failed request entries for file:///home/jules.")
-            for req in file_home_requests_summary:
-                 print(f"- URL: {req['url']}, Failed: {req['failure_text']}, Frame URL: {req['frame_url']}")
-        else:
-            print("No failed network log entries for file:///home/jules (check console for other errors).")
+        print(f"\n--- NETWORK ACTIVITY SUMMARY (details in ext_test_network.json) ---")
+        local_file_access_attempts = len([msg for msg in console_messages if "Not allowed to load local resource" in msg.get("text","") or "ERR_FILE_NOT_FOUND" in msg.get("text","")]) # Heuristic
+        print(f"Local file access issues indicated in console: {local_file_access_attempts} (approx, based on common error messages).")
 
-        print(f"\n--- SSRF ATTEMPTS (ssrf.localdomain.pw and 169.254.169.254) (from network log) ---")
-        print(f"Requests to ssrf.localdomain.pw: {len([r for r in ssrf_domain_requests if r['event_type']=='request'])}")
-        for req in ssrf_domain_requests:
+        ssrf_custom_domain_requests = [req for req in network_requests_raw if "ssrf.localdomain.pw/custom-200/" in req["url"]]
+        metadata_requests_via_ssrf = [req for req in network_requests_raw if "169.254.169.254" in req["url"] and any(frame_url for frame_url in [r.get("frame_url") for r in ssrf_custom_domain_requests if r.get("frame_url")] if frame_url in req.get("frame_url","none"))]
+
+
+        print(f"Requests to ssrf.localdomain.pw/custom-200/: {len([r for r in ssrf_custom_domain_requests if r['event_type']=='request'])}")
+        for req in ssrf_custom_domain_requests:
             if req['event_type'] == 'response':
                 print(f"- Response from {req['url']}: Status {req['status']}")
             elif req['event_type'] == 'requestfailed':
                 print(f"- Failed request to {req['url']}: {req['failure_text']}")
 
-        print(f"Requests to 169.254.169.254 (metadata): {len([r for r in metadata_redirect_requests if r['event_type']=='request'])}")
-        successful_metadata_responses = [req for req in metadata_redirect_requests if req['event_type'] == 'response' and req['status'] == 200]
-        failed_metadata_requests = [req for req in metadata_redirect_requests if req['event_type'] == 'requestfailed']
+        print(f"Requests to 169.254.169.254 (potentially via SSRF custom test): {len([r for r in metadata_requests_via_ssrf if r['event_type']=='request'])}")
+        successful_metadata_responses = [req for req in metadata_requests_via_ssrf if req['event_type'] == 'response' and req['status'] == 200]
+        failed_metadata_requests = [req for req in metadata_requests_via_ssrf if req['event_type'] == 'requestfailed']
 
         if successful_metadata_responses:
-            print(f"Found {len(successful_metadata_responses)} successful responses from metadata URL (likely via redirect):")
+            print(f"Found {len(successful_metadata_responses)} successful responses from metadata URL (via SSRF custom test):")
             for req in successful_metadata_responses:
                  print(f"- URL: {req['url']}, Status: {req.get('status', 'N/A')}, Frame URL: {req['frame_url']}")
         elif failed_metadata_requests:
-            print(f"Found {len(failed_metadata_requests)} failed requests for metadata URL (likely via redirect):")
+            print(f"Found {len(failed_metadata_requests)} failed requests for metadata URL (via SSRF custom test):")
             for req in failed_metadata_requests:
                  print(f"- URL: {req['url']}, Failed: {req['failure_text']}, Frame URL: {req['frame_url']}")
         else:
-            print("No conclusive network log entries (success or fail) for metadata URL via redirect.")
+            print("No conclusive network log entries (success or fail) for metadata URL via SSRF custom test.")
 
 
 if __name__ == "__main__":
